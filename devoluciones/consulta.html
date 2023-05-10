@@ -16,20 +16,24 @@
                     <h2 class="fw-bolder">Devoluciones - Consultar RUT</h2>
                     <hr>
                     <div class="d-flex justify-content-center">
-                        <form>
+                        <form id="formulario_consulta">
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">RUT</label>
-                                <input type="text" placeholder="Ej: 20613446-1" class="form-control">
+                                <input type="text" placeholder="Ej: 20613446-1" name="rut" class="form-control">
                             </div>
                             <div class="mb-1">
                                 <button type="submit" class="btn btn-primary">Consultar</button>
                             </div>
                             </div>
                         </form>
+                        <div class="mb-1" id="respuesta">
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/inventario/devoluciones/js/consulta.js"></script>
 </body>
 </html>
