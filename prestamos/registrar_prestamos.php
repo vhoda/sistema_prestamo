@@ -3,7 +3,6 @@
 <html lang="es">
 <head>
     <title>Registrar Prestamo</title>
-    
 </head>
 <body>
 <?php 
@@ -16,14 +15,18 @@ include'../menu.php'
                     <h2 class="fw-bolder">Prestamos - Registrar Prestamo</h2>
                     <hr>
                     <div>
-                        <form name="formulario1" action="consulta.php" method="POST">
+                        <form name="formulario1" action="guardar.php" method="POST">
                             <div class="mb-1">
-                            <label class="form-label fw-semibold">RUT</label>
-                            <input type="text" placeholder="Ej: 20613446-1" class="form-control" id="rut" name="rut" disabled>
+                                <label class="form-label fw-semibold">ID: (NO modificar)</label>
+                                <input type="text" class="form-control" name="idusuario">
                             </div>
                             <div class="mb-1">
-                            <label class="form-label fw-semibold">Nombres</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" disabled>
+                                <label class="form-label fw-semibold">RUT</label>
+                                <input type="text" class="form-control" name="rut" disabled>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label fw-semibold">Nombres</label>
+                                <input type="text" class="form-control" name="nombre" disabled>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">Apellidos</label>
@@ -32,14 +35,13 @@ include'../menu.php'
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">Carrera:</label>
                                 <input type="text" class="form-control" name="carrera" id="disabledInput" disabled>
-
                             </div>
                             <div class="mb-1">
-                                <label class="form-label fw-semibold">SKU del equipo</label>
-                                <input type="text" class="form-control" name="idproducto" disabled>
+                                <label class="form-label fw-semibold">SKU del equipo (NO modificar)</label>
+                                <input type="text" class="form-control" name="idproductos">
                             </div>
                             <div class="mb-1">
-                                <label class="form-label fw-semibold">Equipo</label>
+                                <label class="form-label fw-semibold">Marca</label>
                                 <input type="text" class="form-control" id="disabledInput" name="marca" disabled>
                             </div>
                             <div class="mb-1">
@@ -47,16 +49,20 @@ include'../menu.php'
                                 <input type="text" class="form-control" id="disabledInput" name="modelo" disabled>
                             </div>
                             <div class="mb-1">
+                                <label class="form-label fw-semibold">Tipo</label>
+                                <input type="text" class="form-control" id="disabledInput" name="tipo" disabled>
+                            </div>
+                            <div class="mb-1">
                                 <label class="form-label fw-semibold">Fecha del prestamo</label>
                                 <div class="input-group date" id="datepicker">
-                                    <input id="startDate" class="form-control" name="fecha_entrega" type="date" />
+                                    <input id="startDate" class="form-control" name="fecha_prestamo" type="date" />
                                     <span id="startDateSelected"></span>
                                 </div>
                             </div>
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">Fecha aproximada de entrega</label>
                                 <div class="input-group date" id="datepicker">
-                                    <input id="startDate" class="form-control" type="date" />
+                                    <input id="startDate" class="form-control" name="fecha_aprox" type="date" />
                                     <span id="startDateSelected"></span>
                                 </div>
                             </div>
@@ -73,24 +79,25 @@ include'../menu.php'
 <script>
 const valores = window.location.search;
 const urlParams = new URLSearchParams(valores);
+var idusuario = urlParams.get('idusuario');
 var rut = urlParams.get('rut');
 var nombre = urlParams.get('nombre');
 var apellido = urlParams.get('apellido');
 var carrera = urlParams.get('carrera');
-var idproducto = urlParams.get('idproducto');
+var idproductos = urlParams.get('idproductos');
 var marca = urlParams.get('marca');
 var modelo = urlParams.get('modelo');
-var fecha_entrega = urlParams.get('fecha_entrega');
+var tipo = urlParams.get('tipo');
 //console.log(rut);
+document.formulario1.idusuario.value=idusuario;
 document.formulario1.rut.value=rut;
 document.formulario1.nombre.value=nombre;
 document.formulario1.apellido.value=apellido;
 document.formulario1.carrera.value=carrera;
-document.formulario1.idproducto.value=idproducto;
+document.formulario1.idproductos.value=idproductos;
 document.formulario1.marca.value=marca;
 document.formulario1.modelo.value=modelo;
-document.formulario1.fecha_entrega.value=fecha_entrega;
-
+document.formulario1.tipo.value=tipo;
 </script>
 </html>
 

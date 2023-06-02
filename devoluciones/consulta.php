@@ -15,7 +15,7 @@ include'../menu.php'
                     <h2 class="fw-bolder">Devoluciones - Consultar RUT</h2>
                     <hr>
                     <div class="d-flex justify-content-center">
-                        <form id="formulario_consulta">
+                        <form action="consultar.php" method="POST">
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">RUT</label>
                                 <input type="text" placeholder="Ej: 20613446-1" name="rut" class="form-control">
@@ -33,6 +33,6 @@ include'../menu.php'
             </div>
         </div>
     </div>
-    <script src="/inventario/devoluciones/js/consulta.js"></script>
+
 </body>
 </html>

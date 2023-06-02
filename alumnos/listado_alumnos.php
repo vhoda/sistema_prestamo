@@ -12,7 +12,14 @@ include'../menu.php'
     <div class="container">
         <div class="row">
             <div class="col">
-                    <h2 class="fw-bolder">Alumnos</h2>
+                    <h2 class="fw-bolder">Alumnos <span class="badge text-bg-secondary shadow"><?php
+                                  require("../config/conexion.php");
+                                  $sql = "SELECT COUNT(idusuario)
+                                  FROM usuario";
+                                  $res = $conexion->query($sql);
+                                  $count = $res->fetchColumn();
+                                  print $count ." <i> Registrados </i>";
+                                ?></span></h2>
                     <hr>
                         <!---busqueda e filtros-->
                         <div class="d-flex mb-3">
@@ -22,7 +29,7 @@ include'../menu.php'
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Filtrar
+                                <i class="bi bi-filter"></i> Filtrar
                                 </button>
                                 <!--dropdown filtrar-->
                                 <div>
@@ -34,7 +41,7 @@ include'../menu.php'
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <a href="/inventario/alumnos/registrar_alumno.php" class="btn btn-success">Agregar alumno</a>  
+                                <a href="/inventario/alumnos/registrar_alumno.php" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Agregar alumno</a>  
                             </div>                  
                         </div>           
             <!--tabla-->
@@ -45,11 +52,13 @@ include'../menu.php'
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Carrera</th>
+                        <th scope="col">Cohorte</th>
                         <th scope="col">Año ingreso</th>
                         <th scope="col">Fecha de Nacimiento</th>
                     </tr>
                 </thead>
                 <tbody>
+                <tbody class="table-group-divider">
                     <?php
                     require("../config/conexion.php");
                     $datos = $conexion->prepare("SELECT * FROM usuario");
@@ -64,7 +73,8 @@ include'../menu.php'
                         <td> <?php echo $row ['nombre']?></td>
                         <td> <?php echo $row ['apellido']?></td>
                         <td> <?php echo $row ['carrera']?></td>
-                        <td> <?php echo $row ['añoingreso']?></td>
+                        <td> <?php echo $row ['cohorte']?></td>
+                        <td> <?php echo $row ['anoingreso']?></td>
                         <td> <?php echo $row ['fecha_nacimiento']?></td>
                         
                     </tr>

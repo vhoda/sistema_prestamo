@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>Listado Prestamos</title>
 </head>
 <body>
@@ -12,7 +11,14 @@ include'../menu.php'
     <div class="container">
         <div class="row">
             <div class="col">
-                    <h2 class="fw-bolder">Prestamos - Listado Prestamos</h2>
+                    <h2 class="fw-bolder">Prestamos <span class="badge text-bg-secondary shadow"><?php
+                                  require("../config/conexion.php");
+                                  $sql = "SELECT COUNT(idprestamo)
+                                  FROM prestamo";
+                                  $res = $conexion->query($sql);
+                                  $count = $res->fetchColumn();
+                                  print $count ." <i> Registrados </i>";
+                                ?></span></h2>
                     <hr>
                         <!---busqueda-->
                         <div class="d-flex mb-3">
@@ -22,7 +28,7 @@ include'../menu.php'
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Filtrar
+                                <i class="bi bi-filter"></i> Filtrar
                                 </button>
                                 <!--dropdown filtrar-->
                                 <div>
@@ -34,7 +40,7 @@ include'../menu.php'
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <a href="/inventario/prestamos/consulta.php" class="btn btn-success">Agregar prestamo</a>  
+                                <a href="/inventario/prestamos/consulta.php" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Agregar prestamo</a>  
                             </div>                  
                         </div>            
             <!--tabla-->
@@ -46,33 +52,36 @@ include'../menu.php'
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos </th>
                         <th scope="col">Carrera</th>
-                        <th scope="col">Fecha_Prestamo</th>
+                        <th scope="col">Fecha Prestamo</th>
+                        <th scope="col">Fecha Aproximada</th>
                         <th scope="col">SKU Equipo</th>
                         <th scope="col">Marca</th>
                         <th scope="col">Modelo</th>
+                        <th scope="col">tipo</th>
                     </tr>
                 </thead>
                 <tbody>
+                <tbody class="table-group-divider">
                     <?php
                     require("../config/conexion.php");
                     //unificar datos con usuario
-                    $datos = $conexion->prepare("SELECT 
-                    prestamo.idprestamo,
+                    
+                    $datos = $conexion->prepare("SELECT prestamo.idprestamo,
                     usuario.rut,
-                    usuario.nombre, 
-                    usuario.apellido, 
+                    usuario.nombre,
+                    usuario.apellido,
                     usuario.carrera,
-                    prestamo.fecha_entrega,
-                    producto.idproducto, 
-                    producto.marca,
-                    producto.modelo
-                    FROM usuario, producto, prestamo, bodega,perfil
+                    prestamo.fecha_prestamo,
+                    prestamo.fecha_aprox,
+                    productos.idproductos,
+                    productos.marca,
+                    productos.modelo,
+                    productos.tipo
+                    FROM usuario, productos, prestamo
                     WHERE
-                    perfil.idperfil=usuario.idperfil
-                    AND
                     usuario.idusuario=prestamo.idusuario
-                    and
-                    prestamo.idproducto=producto.idproducto");
+                    AND
+                    prestamo.idproductos=productos.idproductos ORDER BY prestamo . idprestamo DESC");
                     $datos->setFetchMode(PDO::FETCH_ASSOC);
                     $datos->execute();
                     while($row = $datos->fetch()){
@@ -83,10 +92,12 @@ include'../menu.php'
                         <td> <?php echo $row ['nombre']?></td>
                         <td> <?php echo $row ['apellido']?></td>
                         <td> <?php echo $row ['carrera']?></td>
-                        <td> <?php echo $row ['fecha_entrega']?></td>
-                        <td> <?php echo $row ['idproducto']?></td>
+                        <td> <?php echo $row ['fecha_prestamo']?></td>
+                        <td> <?php echo $row ['fecha_aprox']?></td>
+                        <td> <?php echo $row ['idproductos']?></td>
                         <td> <?php echo $row ['marca']?></td>
                         <td> <?php echo $row ['modelo']?></td>
+                        <td> <?php echo $row ['tipo']?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

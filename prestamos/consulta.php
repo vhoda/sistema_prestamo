@@ -18,9 +18,9 @@ include'../menu.php'
                         <form id="formulario_consultaprestamo">
                             <div class="mb-1">
                                 <label class="form-label fw-semibold">RUT</label>
-                                <input type="text" placeholder="Ej: 20613446-1" name="rut" class="form-control">
+                                <input type="text" placeholder="Ej: 12345678-9" name="rut" class="form-control">
                                 <label class="form-label fw-semibold">SKU del equipo</label>
-                                <input type="text" placeholder="Ej: 12345" name="idproducto" class="form-control">
+                                <input type="text" placeholder="Ej: 12345" name="idproductos" class="form-control">
                             </div>
                             <div class="mb-1">
                                 <button type="submit" class="btn btn-primary">Consultar</button>

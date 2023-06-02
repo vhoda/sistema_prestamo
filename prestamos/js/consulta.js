@@ -10,8 +10,7 @@ formulario_consultaprestamo.addEventListener('submit', function(e){
 
     console.log(datos_consulta)
     console.log(datos_consulta.get('rut'))
-    console.log(datos_consulta.get('idproducto'))
-
+    console.log(datos_consulta.get('idproductos'))
     fetch('/inventario/prestamos/js/post.php', {
         method: 'POST',
         body: datos_consulta
@@ -28,13 +27,8 @@ formulario_consultaprestamo.addEventListener('submit', function(e){
         }else{
 
             var json = data;
-            window.location = '../prestamos/registrar_prestamos.php?rut='+json.rut+'&nombre='+json.nombre+'&apellido='+json.apellido+'&carrera='+json.carrera+'&idproducto='+json.idproducto+'&marca='+json.marca+'&modelo='+json.modelo+'&fecha_entrega='+json.fecha_entrega;
+            window.location = '../prestamos/registrar_prestamos.php?idusuario='+json.idusuario+'&rut='+json.rut+'&nombre='+json.nombre+'&apellido='+json.apellido+'&carrera='+json.carrera+'&idproductos='+json.idproductos+'&marca='+json.marca+'&modelo='+json.modelo+'&tipo='+json.tipo;
 
-
-            
-            
-
-           
         }
         
     })

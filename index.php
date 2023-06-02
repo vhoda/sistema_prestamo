@@ -14,7 +14,7 @@ include"menu.php"
                     <h2 class="fw-bolder">Inicio</h2>
                     <hr>
                     <div class="row">
-                        <div class="col-sm-3 mb-3 mb-sm-0">
+                        <div class="col-sm-3 mb-3 mb-sm-2">
                           <div class="card shadow-sm">
                             <div class="card-body">
                                 <a href="/inventario/equipos/listado_equipos.php" class="card-title fs-2 fw-bold">Equipos Registrados</a>
@@ -22,8 +22,8 @@ include"menu.php"
                                 <br>
                                 <?php
                                   require("config/conexion.php");
-                                  $sql = "SELECT COUNT(idproducto)
-                                  FROM producto";
+                                  $sql = "SELECT COUNT(idproductos)
+                                  FROM productos";
                                   $res = $conexion->query($sql);
                                   $count = $res->fetchColumn();
                                   print $count ." <b> Registrados </b>";
@@ -31,24 +31,24 @@ include"menu.php"
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 mb-3 mb-sm-2">
                           <div class="card shadow-sm">
                             <div class="card-body">
                                 <a href="/inventario/alumnos/listado_alumnos.php" class="card-title fs-2 fw-bold">Alumnos Registrados</a>
                                 <br>
                                 <br>
                                   <?php
-                                  require("config/conexion.php");
-                                  $sql = "SELECT COUNT(idusuario)
-                                  FROM usuario";
-                                  $res = $conexion->query($sql);
-                                  $count = $res->fetchColumn();
-                                  print $count ." <b> Registrados </b>";
+                                    require("config/conexion.php");
+                                    $sql = "SELECT COUNT(idusuario)
+                                    FROM usuario";
+                                    $res = $conexion->query($sql);
+                                    $count = $res->fetchColumn();
+                                    print $count ." <b> Registrados </b>";
                                   ?>
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 mb-3 mb-sm-2">
                             <div class="card shadow-sm">
                               <div class="card-body">
                                   <a href="/inventario/prestamos/listado_prestamos.php" class="card-title fs-2 fw-bold">Prestados</a>
@@ -57,23 +57,30 @@ include"menu.php"
                                   <br>
                                   <br>
                                   <?php
-                                  require("config/conexion.php");
-                                  $sql = "SELECT COUNT(idprestamo)
-                                  FROM prestamo";
-                                  $res = $conexion->query($sql);
-                                  $count = $res->fetchColumn();
-                                  print $count ." <b> Registrados </b>";
+                                    require("config/conexion.php");
+                                    $sql = "SELECT COUNT(idprestamo)
+                                    FROM prestamo";
+                                    $res = $conexion->query($sql);
+                                    $count = $res->fetchColumn();
+                                    print $count ." <b> Registrados </b>";
                                   ?>
                               </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 mb-3 mb-sm-2">
                             <div class="card shadow-sm">
                               <div class="card-body">
                                   <a href="/inventario/devoluciones/listado_devolucion.php" class="card-title fs-2 fw-bold">Equipos entregados</a>
                                   <br>
                                   <br>
-                                  <p class="card-text fw-bolder"> "X" Registrados.</p>
+                                  <?php
+                                    require("config/conexion.php");
+                                    $sql = "SELECT COUNT(iddevolucion)
+                                    FROM devolucion";
+                                    $res = $conexion->query($sql);
+                                    $count = $res->fetchColumn();
+                                    print $count ." <b> Registrados </b>";
+                                  ?>
                               </div>
                             </div>
                         </div>

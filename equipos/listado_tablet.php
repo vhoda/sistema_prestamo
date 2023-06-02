@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>Listado Equipos</title>
+    <title>Listado Equipos - Tablets</title>
 </head>
 <body>
 <?php 
@@ -12,10 +12,11 @@ include'../menu.php'
     <div class="container">
         <div class="row">
             <div class="col">
-                    <h2 class="fw-bolder">Equipos <span class="badge text-bg-secondary shadow"><?php
+                    <h2 class="fw-bolder">Tablets <span class="badge text-bg-secondary shadow"><?php
                                   require("../config/conexion.php");
-                                  $sql = "SELECT COUNT(idproductos)
-                                  FROM productos";
+                                  $sql = "SELECT COUNT(tipo)
+                                  FROM productos
+                                  WHERE productos.tipo='Tablet'";
                                   $res = $conexion->query($sql);
                                   $count = $res->fetchColumn();
                                   print $count ." <i> Registrados </i>";
@@ -33,14 +34,14 @@ include'../menu.php'
                                 </button>
                                 <!--dropdown filtrar-->
                                 <div>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                                   <ul class="dropdown-menu dropdown-menu-end shadow">
                                         <li><a class="dropdown-item" href="/inventario/equipos/listado_notebook.php">Notebooks</a></li>
                                         <li><a class="dropdown-item" href="/inventario/equipos/listado_tablet.php">Tablets</a></li>
                                         <li><a class="dropdown-item" href="/inventario/equipos/listado_calculadora.php">Calculadoras</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-end">
+                            <div class="d-flex">
                                 <a href="/inventario/equipos/registrar_equipo.php" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Agregar equipo</a>  
                             </div>                  
                         </div>                
@@ -60,7 +61,7 @@ include'../menu.php'
                     <!--consultas de la tabla-->
                     <?php
                     require("../config/conexion.php");
-                    $datos = $conexion->prepare("SELECT * FROM productos ORDER BY productos . idproductos DESC");
+                    $datos = $conexion->prepare("SELECT idproductos, marca, modelo, tipo , estado FROM productos WHERE productos.tipo = 'Tablet'; ORDER BY productos . idproductos DESC");
                     $datos->setFetchMode(PDO::FETCH_ASSOC);
                     $datos->execute();
                     while($row = $datos->fetch()){

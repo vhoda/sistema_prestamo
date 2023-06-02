@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>Listado Equipos</title>
+    <title>Listado Equipos - Notebooks</title>
 </head>
 <body>
 <?php 
@@ -12,10 +12,11 @@ include'../menu.php'
     <div class="container">
         <div class="row">
             <div class="col">
-                    <h2 class="fw-bolder">Equipos <span class="badge text-bg-secondary shadow"><?php
+                    <h2 class="fw-bolder">Notebooks <span class="badge text-bg-secondary shadow"><?php
                                   require("../config/conexion.php");
-                                  $sql = "SELECT COUNT(idproductos)
-                                  FROM productos";
+                                  $sql = "SELECT COUNT(tipo)
+                                  FROM productos
+                                  WHERE productos.tipo='Notebook'";
                                   $res = $conexion->query($sql);
                                   $count = $res->fetchColumn();
                                   print $count ." <i> Registrados </i>";
@@ -40,7 +41,7 @@ include'../menu.php'
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-end">
+                            <div class="d-flex">
                                 <a href="/inventario/equipos/registrar_equipo.php" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Agregar equipo</a>  
                             </div>                  
                         </div>                
@@ -60,7 +61,7 @@ include'../menu.php'
                     <!--consultas de la tabla-->
                     <?php
                     require("../config/conexion.php");
-                    $datos = $conexion->prepare("SELECT * FROM productos ORDER BY productos . idproductos DESC");
+                    $datos = $conexion->prepare("SELECT idproductos, marca, modelo, tipo , estado FROM productos WHERE productos.tipo = 'Notebook'; ORDER BY productos . idproductos DESC");
                     $datos->setFetchMode(PDO::FETCH_ASSOC);
                     $datos->execute();
                     while($row = $datos->fetch()){
